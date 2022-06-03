@@ -1,0 +1,189 @@
+"""
+1.函数
+作用：具有特定功能的代码块，比如登录、注册
+定义
+def 函数名（参数1，参数2）
+    函数的代码块
+
+函数名： 函数名要有一定的语义
+return ：返回函数，默认是return none 起到对函数结束的标志
+
+参数类型：
+    1.位置参数：参数的数量和位置是有顺序的，在调用的时候，参数数量和顺序都要一致
+    2.关键字参数: 函数调用是，是由key：value 形式进行传递，add(x=3,y=4)
+    3.默认参数： 有的参数可以指定默认值，默认值的参数需要放在最后面，add(x,y=4)
+    4.可变参数： 包括列表形式的可变参数和字典形式的可变参数： add（x，y,*args）
+    字典形式add(x,y,**kwargs)
+
+---------------------------------------------------------------------------
+
+    面向对象
+
+是一种编程思想，就是把现实生活的实物抽象成具体的类，在类中声明属性和方法。在去初始化我们的对象
+
+实现方式：
+    1.class 类名():
+         变量 = none
+
+         def __init__(self):构造方法
+             代码块 初始函数
+
+         def 方法(self):
+            代码块
+      c = 类名()
+      c.方法
+"""
+# class Elevator():
+#
+#     button = "未激活"
+#     max_people_nums = 15
+#     floor = 8
+#
+#     def open(self):
+#         print("开门")
+#
+#     def close(self):
+#         print("关门")
+#
+#     def run(self):
+#         print("电梯启动运行")
+#
+# el = Elevator()
+# el.open()
+# el.close()
+# el.run()
+# ---------------------------------
+# class Students():
+#
+#     name = ""
+#     grade = 0
+#
+#     def study(self,course):
+#         print("学生{},目前{}年级,正在学习{}".format(self.name,self.grade,course))
+#
+# s = Students()
+# s.name = "张三"
+# s.grade = 5
+# s.study('语文课')
+# class Students(object):
+#
+#     def __init__(self,name,grade):
+#         self.name = name
+#         self.grade = grade
+#
+#     def study(self,course):
+#         print("学生{},目前{}年级,正在学习{}".format(self.name,self.grade,course))
+#
+# s = Students('张三',5)
+# s.study('语文课')
+"""
+变量： 类的变量包括类变量，实例变量，局部变量
+类变量：
+所有类的实例化对象都同时共享类变量，属于类的公共资源数据。
+类方法的调用方式有 2 种，既可以使用类名直接调用，也可以使用类的实例化对象调用
+class Students(object):
+    name = "" grade = "" 
+    #通过类名调用 
+    Students.name = "张三" 
+    Students.grade = '5' 
+    print(Students.name) 
+    print(Students.grade) 
+    #通过实例进行调用 
+    s = Students() 
+    print(s.name)
+实例变量
+    实例变量指的是在任意类方法内部，以“self.变量名”的方式定义的变量，其特点是只作用于调用方
+    法的对象。
+    实例变量只能通过对象名访问，无法通过类名访问。
+    class Students(object): 
+    
+        def __init__(self,name,grade): 
+        self.name = name 
+        self.grade = grade 
+        
+    s = Students("张三",5) 
+    print(s.name) 
+    print(s.grade)
+    
+局部变量
+    局部变量直接在方法内定义的变量且以“变量名=值”的方式进行定义
+    局部变量的使用范围也仅限于所定义的方法内
+    class Students(object): 
+    
+        def study(self,name): 
+        
+         val = "hello" 
+         print("{} {}".format(val,name)) 
+         
+    s = Students() 
+    s.study("张三")
+"""
+# -----------------------------------------------------------------
+"""
+***封装
+    当类中的部分数据不愿意被外界使用时，就可以把类的部分方法和属性隐藏掉，只给用户提供一些方法
+    的接口，如我们电脑的鼠标和键盘 。
+    默认情况下，python类的变量和方法都是共有的，他们的名称前都没有下划线
+    如果类中的变量和方法想设置为私有的，可以通过在变量或方法前个单下划线(_)或双下划线(__)
+    如果是以_下划线开头的方法和属性，则是无法导入的。
+    如果是以__下划线开头的方法和数学，则是无法直接调用的。
+class Students(object):
+    
+     __score = "" 
+     
+     def set_score(self,score): 
+      self.__score = score 
+     
+     def get_score(self): 
+     return self.__score 
+     
+s = Students() 
+s.set_score(76)
+s.__score = 65 #不会设置生效 
+print(s.get_score())
+"""
+# ---------------------------------------------------------
+"""
+***多肽
+如果满足如下两个条件，就是类的多肽：
+1. 继承：多态一定是发生在子类和父类之间；
+2. 重写：子类重写了父类的方法。
+class People(): 
+
+    def eat(self,ids): 
+    print("{}吃饭".format(ids)) 
+    
+class Students(People): 
+
+    def study(self): 
+    print("学习") 
+    
+    def eat(self,ids): 
+    if ids == "学生": 
+    print("当前吃饭的角色是学生") 
+    else:print("当前学生并没有吃饭") 
+    
+s = Students() 
+s.eat("学生")
+从上面可以看出，当前通过学生对象调用eat()的时候，这时是调用的子类的eat()。那如果我还想要调用
+的是父类的方法呢？ super命令
+class Students(People):
+ 
+    def __init__(self): 
+    super().__init__() 
+    
+    def study(self,ids): 
+    print("学习") 
+    super().eat(ids) 
+    
+    def eat(self,ids): 
+    if ids == "学生": 
+    print("当前吃饭的角色是学生") 
+    else:print("当前学生并没有吃饭") 
+    
+s = Students() 
+s.study("学生")
+"""
+
+
+

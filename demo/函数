@@ -1,0 +1,61 @@
+"""
+1.函数
+def 函数名字（参数列表）：
+    代码块
+"""
+# def add(x,y): 位置参数顺序要一一对应，不能颠倒
+#     z = x + y
+#     return  z # return 代表着函数结束的标志
+# # 函数的调用 调用直接使用函数名就可以
+# print(add(3,4))
+# 位置参数，关键字参数可以混合使用，但位置参数再前，关键字参数在后，以key=value形式进行调用
+# def student_lesson(grade,subject):
+#     z = "{}年级上{}课".format(grade,subject)
+#     return z
+# print(student_lesson(grade="四",subject="语文"))
+"""
+默认参数
+其中某个参数会有默认值，要放在最后面
+def study_language(name,language='python'): 
+    info = ("{}要学习{}语言".format(name,language)) 
+    return info
+print(study_language("张三"))
+"""
+"""
+可变化参数有两种类型：
+分别是用来接收列表形式的可变参数，调用函数时跟位置参数一样
+用来接收字典形式的可变参数 。调用函数时跟为关键字参数一样。
+那么可变参数和位置参数，关键字参数最大的不同就是传递参数的数量不受限制 。
+语法格式：
+def fun_name(a,b,*args): pass
+def show_info(*args): 
+print(args) 
+show_info() #可变参数也可以不传入任何参数 
+show_info("python") #传入一个参数 
+show_info("python",'java') #传入多个参数 
+show_info(*['python','java']) #传入列表，注意，列表前需要加* 
+show_info(*('python','java')) #传入元组，元组前也需要加*
+"""
+# def add(x,y,*args):
+#     z = x + y + sum(args)
+#     return z
+# print(add(1,2,3,4,5,6,7,8,9))
+"""
+def show_info(**kwargs): 
+print(kwargs) 
+show_info() #可变参数也可以不传入任何参数 
+show_info(key1="python") #传入一个参数 
+show_info(key1="python",key2='java') #传入多个参数 
+show_info(**{'key1':'python','key2':'java'}) #传入列表，注意，列表前需 要加
+同样的位置参数和可变参数结合起来使用。
+def add(a,b,*args): 
+for x in args: 
+sum = sum +x 
+return a + b + sum 
+def fun_name(*args,**kwargs): #此函数可以接收任何长度，任何位置，任何关键字的参数 。
+pass
+"""
+
+
+
+
